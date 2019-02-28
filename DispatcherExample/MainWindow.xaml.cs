@@ -24,5 +24,47 @@ namespace DispatcherExample
         {
             InitializeComponent();
         }
+
+        private void btnProcess_Click(object sender, RoutedEventArgs e)
+        {
+            UseTask();
+        }
+
+
+        private void UseTask()
+        {
+            //使用Task创建一个新的线程
+            Task task = new Task(() =>
+            {
+                int inputNUm = 100;
+               for (int i = 0; i < inputNUm; i++)
+                {
+                    System.Threading.Thread.Sleep(100);
+                    //this.Dispatcher.BeginInvoke((Action)delegate
+                    //    {
+                    //        this.progressBar.Value = i;
+                    //        this.textBox.Text = i.ToString();
+
+                    //    });
+                    
+                    //使用Dispatcher访问本线程
+                    this.Dispatcher.Invoke(new Action(() =>
+                    {
+                        this.progressBar.Value = i;
+                        this.textBox.Text = i.ToString();
+                    }));
+                }
+                MessageBox.Show("sddd");
+
+            });
+
+            task.Start();
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.progressBar.Value = 0;
+            this.textBox.Text = null;
+        }
     }
 }

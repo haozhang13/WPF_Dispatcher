@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DispatcherExample"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="160" Width="300">
+    <StackPanel>
+        <ProgressBar Name="progressBar" Height="20" Width="250" Margin="10"></ProgressBar>
+        <TextBox Name="textBox" Width="50" Height="20" HorizontalAlignment="Center"></TextBox>
+        <Button Name="btnProcess" Width="100" Click="btnProcess_Click" Margin="5">Start</Button>
+        <Button Name="btnCancel" Width="100" Click="btnCancel_Click" Margin="5">Cancel</Button>
+    </StackPanel>
+
 </Window>
