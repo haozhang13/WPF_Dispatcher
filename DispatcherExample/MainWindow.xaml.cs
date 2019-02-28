@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -27,7 +28,9 @@ namespace DispatcherExample
 
         private void btnProcess_Click(object sender, RoutedEventArgs e)
         {
+            Thread.CurrentThread.Name = "Main";
             UseTask();
+          
         }
 
 
@@ -50,6 +53,11 @@ namespace DispatcherExample
                     //使用Dispatcher访问本线程
                     this.Dispatcher.BeginInvoke(new Action(() =>
                     {
+                        //可以看出Dispatcher所在的线程为Main
+                        string dd= this.Dispatcher.Thread.Name;
+
+                        //当前程序所在的线程为Main
+                        string cuurentThread = Thread.CurrentThread.Name;
                         this.progressBar.Value = i;
                         this.textBox.Text = i.ToString();
                     }));
@@ -65,6 +73,7 @@ namespace DispatcherExample
         {
             this.progressBar.Value = 0;
             this.textBox.Text = null;
+
         }
     }
 }
