@@ -48,7 +48,7 @@ namespace DispatcherExample
                     //    });
                     
                     //使用Dispatcher访问本线程
-                    this.Dispatcher.Invoke(new Action(() =>
+                    this.Dispatcher.BeginInvoke(new Action(() =>
                     {
                         this.progressBar.Value = i;
                         this.textBox.Text = i.ToString();
